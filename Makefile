@@ -6,7 +6,7 @@ safelease:
 
 all: safelease
 
-dist:
+dist: safelease
 	mkdir -p dist
 	rm -fr safelease-$(VERSION)
 	mkdir -p safelease-$(VERSION)
