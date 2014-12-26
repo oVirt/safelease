@@ -1,6 +1,9 @@
-/*  This program is free software: you can redistribute it and/or modify
+/*
+    Copyright (C) 2008-2014 Red Hat, Inc.
+
+    This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
+    the Free Software Foundation, either version 2 of the License, or
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
@@ -9,7 +12,13 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+    02110-1301 USA
+
+    Refer to the README and COPYING files for full details of the license
+*/
+
 /* Locker */
 #define _GNU_SOURCE 1
 #include <stdarg.h>
@@ -399,7 +408,7 @@ query(int fd, off_t offset)
     t = ctime(&tsec);
     t[strlen(t)-1] = 0;
 
-    printf("%s: ID %-*s TS %0*llx (%s, %d usec)\n", 
+    printf("%s: ID %-*s TS %0*llx (%s, %d usec)\n",
         sameid(curr, freetag) ? "FREE" : "LOCKED",
         idlen, id, stamplen, ts, t, tusec);
 
