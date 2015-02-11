@@ -20,6 +20,7 @@ Storage-Centric Coordination" by G Chockler and D Malkhi.
 
 %build
 ./autogen.sh
+
 %configure
 make %{?_smp_mflags}
 
@@ -35,7 +36,7 @@ make %{?_smp_mflags}
 * Mon Dec  8 2014 Vitor de Lima <vdelima@redhat.com> - 1.0-3
 - Use autotools to build the project
 - Dropped unused python_ver global
-- Replaced the %libname macro with %name
+- Replaced the %%libname macro with %%name
 - Included the target directory /usr/lib/safelease in the RPM file list
 - Included a description of the package
 
