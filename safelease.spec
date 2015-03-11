@@ -6,7 +6,7 @@ Summary:    Legacy locking utility for VDSM
 Group:      System Environment/Libraries
 License:    GPLv2+
 URL:        http://www.ovirt.org/Safelease
-Source0:    https://github.com/vitordelima/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:    https://bronhaim.fedorapeople.org/%{name}-%{version}.tar.gz
 BuildRequires: autoconf
 BuildRequires: automake
 
