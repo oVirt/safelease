@@ -1,6 +1,6 @@
 Name:       safelease
 Version:    1.0
-Release:    3%{?dist}
+Release:    4%{?dist}
 Summary:    Legacy locking utility for VDSM
 
 Group:      System Environment/Libraries
@@ -28,11 +28,16 @@ make %{?_smp_mflags}
 %make_install
 
 %files
-%doc AUTHORS COPYING README
+%doc AUTHORS README
+%{!?_licensedir:%global license %%doc}
+%license COPYING
 %dir %{_libexecdir}/%{name}
 %{_libexecdir}/%{name}/%{name}
 
 %changelog
+* Sun Apr 12 2015 Yaniv Bronhaim <ybronhei@redhat.com.com> - 1.0-4
+- Adding %%license macro for COPYING
+
 * Mon Dec  8 2014 Vitor de Lima <vdelima@redhat.com> - 1.0-3
 - Use autotools to build the project
 - Dropped unused python_ver global
