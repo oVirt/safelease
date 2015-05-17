@@ -1,6 +1,6 @@
 Name:       safelease
 Version:    1.0
-Release:    4%{?dist}
+Release:    5%{?dist}
 Summary:    Legacy locking utility for VDSM
 
 Group:      System Environment/Libraries
@@ -9,6 +9,23 @@ URL:        http://www.ovirt.org/Safelease
 Source0:    https://bronhaim.fedorapeople.org/%{name}-%{version}.tar.gz
 BuildRequires: autoconf
 BuildRequires: automake
+
+##
+# The following requirements are necessary for VDSM to avoid
+# platform dependencies. Those are not required by safelease code and should
+# remove once vdsm will be able to provide those requirements otherwise.
+
+# Numactl is not available on s390[x] and ARM
+%ifnarch s390 s390x %{arm}
+Requires: numactl
+%endif
+
+%ifarch x86_64
+Requires: python-dmidecode
+Requires: dmidecode
+%endif
+
+## hack end.
 
 %description
 Safelease is a legacy cluster lock utility used by VDSM. It is based on
@@ -35,7 +52,10 @@ make %{?_smp_mflags}
 %{_libexecdir}/%{name}/%{name}
 
 %changelog
-* Sun Apr 12 2015 Yaniv Bronhaim <ybronhei@redhat.com.com> - 1.0-4
+* Sun May 17 2015 Yaniv Bronhaim <ybronhei@redhat.com> - 1.0-5
+- Adding vdsm hack to require platform depended packages which vdsm needs
+
+* Sun Apr 12 2015 Yaniv Bronhaim <ybronhei@redhat.com> - 1.0-4
 - Adding %%license macro for COPYING
 
 * Mon Dec  8 2014 Vitor de Lima <vdelima@redhat.com> - 1.0-3
