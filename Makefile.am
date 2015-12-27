@@ -20,4 +20,12 @@
 
 SUBDIRS = src
 
+.PHONY: srpm rpm
+
+srpm: dist
+	rpmbuild -ts $(DIST_ARCHIVES)
+
+rpm: dist
+	rpmbuild -ta $(DIST_ARCHIVES)
+
 EXTRA_DIST = safelease.spec autogen.sh
