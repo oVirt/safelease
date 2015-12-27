@@ -16,6 +16,8 @@ Packaging
 The 'safelease.spec' file demonstrates how to distribute safelease as an RPM
 package.
 
+'make rpm' generates rpm file for installation.
+
 Getting Help
 ============
 
