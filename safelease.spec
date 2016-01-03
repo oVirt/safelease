@@ -36,7 +36,7 @@ Storage-Centric Coordination" by G Chockler and D Malkhi.
 %autosetup -n %{name}-%{version}
 
 %build
-./autogen.sh
+./autogen.sh --system
 
 %configure
 make %{?_smp_mflags}
