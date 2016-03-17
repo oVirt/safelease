@@ -23,6 +23,7 @@ Requires: numactl
 %ifarch x86_64
 Requires: python-dmidecode
 Requires: dmidecode
+Requires: virt-v2v
 %endif
 
 ## hack end.
