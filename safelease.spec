@@ -1,6 +1,6 @@
 Name:       safelease
 Version:    1.0
-Release:    6%{?dist}
+Release:    7%{?dist}
 Summary:    Legacy locking utility for VDSM
 
 Group:      System Environment/Libraries
@@ -53,6 +53,9 @@ make %{?_smp_mflags}
 %{_libexecdir}/%{name}/%{name}
 
 %changelog
+* Tue Mar 22 2016 Yaniv Bronhaim <ybronhei@redhat.com> - 1.0-7
+- Adding virt-v2v requirement - another hack for vdsm
+
 * Thu Dec 24 2015 Yaniv Bronhaim <ybronhei@redhat.com> - 1.0-6
 - Adding target for rpm and srpm to make file to ease build process
 
