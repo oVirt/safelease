@@ -119,7 +119,7 @@ usage(void)
         "op_max_ms is the maximum time in msec that a single IO operation may take (must be <= lease_ms).\n"
         "if -r option is used, the path is a readable file/device.\n"
         " The program then validates that its 'id' is written at the given offset.\n"
-        " If this is not the case, acquire and renew  will fail immediately.\n"
+        " If this is not the case, acquire and renew will fail immediately.\n"
     );
     exit(1);
 }
