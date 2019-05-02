@@ -1,0 +1,8 @@
+dnf-utils
+dnf
+autoconf
+automake
+make
+gcc
+gettext-devel
+git
