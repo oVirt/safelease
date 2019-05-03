@@ -1,6 +1,6 @@
 Name:       safelease
 Version:    1.0.1
-Release:    1%{?dist}
+Release:    1%{?release_suffix}%{?dist}
 Summary:    Legacy locking utility for VDSM
 
 License:    GPLv2+
