@@ -10,24 +10,6 @@ BuildRequires:  gcc
 BuildRequires: autoconf
 BuildRequires: automake
 
-##
-# The following requirements are necessary for VDSM to avoid
-# platform dependencies. Those are not required by safelease code and should
-# remove once vdsm will be able to provide those requirements otherwise.
-
-# Numactl is not available on s390[x] and ARM
-%ifnarch s390 s390x %{arm}
-Requires: numactl
-%endif
-
-%ifarch x86_64
-Requires: python2-dmidecode
-Requires: dmidecode
-Requires: virt-v2v
-%endif
-
-## hack end.
-
 %description
 Safelease is a legacy cluster lock utility used by VDSM. It is based on
 the algorithm presented in the article "Light-Weight Leases for
