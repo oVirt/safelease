@@ -1,11 +1,11 @@
 Name:       safelease
-Version:    1.0
-Release:    14%{?dist}
+Version:    1.0.1
+Release:    1%{?dist}
 Summary:    Legacy locking utility for VDSM
 
 License:    GPLv2+
-URL:        http://www.ovirt.org/Safelease
-Source0:    https://bronhaim.fedorapeople.org/%{name}-%{version}.tar.gz
+URL:        https://www.ovirt.org/develop/developer-guide/vdsm/safelease.html
+Source0:    http://resources.ovirt.org/pub/src/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  gcc
 BuildRequires: autoconf
 BuildRequires: automake
@@ -35,6 +35,10 @@ make %{?_smp_mflags}
 %{_libexecdir}/%{name}/%{name}
 
 %changelog
+* Fri May 03 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0.1-1
+- Rebase on upstream 1.0.1
+- Resolves: BZ#1696313
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.0-14
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 

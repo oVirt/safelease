@@ -19,7 +19,7 @@
 #
 
 AC_PREREQ([2.69])
-AC_INIT([safelease], [1.0], [devel@ovirt.org])
+AC_INIT([safelease], [1.0.1], [devel@ovirt.org])
 AM_INIT_AUTOMAKE([1.13 foreign -Wall -Werror])
 AC_PROG_CC
 AC_CONFIG_SRCDIR([src/safelease.c])
