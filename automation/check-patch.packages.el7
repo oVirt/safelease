@@ -1,7 +1,0 @@
-yum-utils
-autoconf
-automake
-make
-gcc
-gettext-devel
-git
