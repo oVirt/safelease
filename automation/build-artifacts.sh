@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-REBUILD_TARBALL=1
+REBUILD_TARBALL=0
 
 
 # remove any previous artifacts
