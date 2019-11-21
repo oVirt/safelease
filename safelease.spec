@@ -1,6 +1,6 @@
 Name:       safelease
 Version:    1.0.1
-Release:    1%{?release_suffix}%{?dist}
+Release:    2%{?release_suffix}%{?dist}
 Summary:    Legacy locking utility for VDSM
 
 License:    GPLv2+
@@ -35,6 +35,9 @@ make %{?_smp_mflags}
 %{_libexecdir}/%{name}/%{name}
 
 %changelog
+* Thu Nov 21 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0.1-2
+- Rebuild for el8
+
 * Fri May 03 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0.1-1
 - Rebase on upstream 1.0.1
 - Resolves: BZ#1696313
