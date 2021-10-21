@@ -1,45 +1,44 @@
-Installation
-============
+# Safe Lease
+
+[![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/)
+
+Safelease is a legacy cluster lock utility used by [VDSM](https://github.com/ovirt/vdsm).
+It is based on the algorithm presented in the article
+"Light-Weight Leases for Storage-Centric Coordination" by G Chockler and D Malkhi.
+
+
+## Installation
 
 Safelease can be used by following the standard autotools installation
 process, documented in the INSTALL file. As a quick
 start you can do
 
+```bash
    ./configure --prefix=/usr --sysconfdir=/etc \
         --localstatedir=/var --libdir=/usr/lib
    make
    sudo make install
+```
 
-Packaging
-=========
+## Packaging
 
-The 'safelease.spec' file demonstrates how to distribute safelease as an RPM
-package.
+The `safelease.spec` file demonstrates how to distribute safelease as an RPM package.
 
 'make rpm' generates rpm file for installation.
 
-Getting Help
-============
+## Getting Help
+
 
 There are two mailing lists for discussions:
 
-  - For technical discussions about the project and its code base.
-
-    http://lists.ovirt.org/mailman/listinfo/devel
-
-  - For questions by users, who do not want to be swamped by
-    technicalities.
-
-    http://lists.ovirt.org/mailman/listinfo/users
+- For technical discussions about the project and its code base: <http://lists.ovirt.org/mailman/listinfo/devel>
+- For questions by users, who do not want to be swamped by technicalities: <http://lists.ovirt.org/mailman/listinfo/users>
 
 The developers also hang out on IRC at #vdsm hosted on  freenode.net
 
-The latest upstream code can be obtained from GIT:
+The latest upstream code can be obtained from GIT: <http://gerrit.ovirt.org/p/safelease.git>
 
-    http://gerrit.ovirt.org/p/safelease.git
-
-Licensing
-=========
+## Licensing
 
 safelease is provided under the terms of the GNU General Public License,
 version 2 or later. Please see the COPYING file for complete GPLv2+
@@ -57,5 +56,3 @@ contained in the combination.
 If you modify this program, you may extend this exception to your
 version, but you are not obligated to do so.  If you do not wish to do
 so, delete this exception statement from your version.
-
--- End of readme

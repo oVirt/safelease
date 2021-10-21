@@ -28,7 +28,7 @@ make %{?_smp_mflags}
 %make_install
 
 %files
-%doc AUTHORS README
+%doc AUTHORS README.md
 %{!?_licensedir:%global license %%doc}
 %license COPYING
 %dir %{_libexecdir}/%{name}

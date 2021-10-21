@@ -28,4 +28,4 @@ srpm: dist
 rpm: dist
 	rpmbuild -ta $(DIST_ARCHIVES)
 
-EXTRA_DIST = safelease.spec autogen.sh
+EXTRA_DIST = safelease.spec autogen.sh README.md
