@@ -2,9 +2,29 @@
 
 [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/)
 
-Safelease is a legacy cluster lock utility used by [VDSM](https://github.com/ovirt/vdsm).
+Welcome to the Safe Lease source repository. This repository is hosted on [GitHub:ovirt-safelease](https://github.com/oVirt/safelease).
+
+Safelease is a legacy cluster lock utility used by [VDSM](https://github.com/oVirt/vdsm).
 It is based on the algorithm presented in the article
-"Light-Weight Leases for Storage-Centric Coordination" by G Chockler and D Malkhi.
+["Light-Weight Leases for Storage-Centric Coordination" by G. Chockler and D. Malkhi](https://dspace.mit.edu/handle/1721.1/30464).
+
+## How to contribute
+
+All contributions are welcome - patches, bug reports, and documentation issues.
+
+### Submitting patches
+
+Please submit patches to [GitHub:safelease](https://github.com/oVirt/safelease). If you are not familiar with the process, you can read about [collaborating with pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests) on the GitHub website.
+
+### Found a bug or documentation issue?
+
+To submit a bug or suggest an enhancement for oVirt Release please use [oVirt Bugzilla for safelease component within ovirt-distribution product](https://bugzilla.redhat.com/enter_bug.cgi?product=ovirt-distribution).
+
+If you don't have a Bugzilla account, you can still report [issues](https://github.com/oVirt/safelease/issues). If you find a documentation issue on the oVirt website, please navigate to the page footer and click "Report an issue on GitHub".
+
+## Still need help?
+
+If you have any other questions or suggestions, you can join and contact us on the [oVirt Users forum / mailing list](https://lists.ovirt.org/admin/lists/users.ovirt.org/).
 
 
 ## Installation
@@ -26,17 +46,6 @@ The `safelease.spec` file demonstrates how to distribute safelease as an RPM pac
 
 'make rpm' generates rpm file for installation.
 
-## Getting Help
-
-
-There are two mailing lists for discussions:
-
-- For technical discussions about the project and its code base: <http://lists.ovirt.org/mailman/listinfo/devel>
-- For questions by users, who do not want to be swamped by technicalities: <http://lists.ovirt.org/mailman/listinfo/users>
-
-The developers also hang out on IRC at #vdsm hosted on  freenode.net
-
-The latest upstream code can be obtained from GIT: <http://gerrit.ovirt.org/p/safelease.git>
 
 ## Licensing
 
