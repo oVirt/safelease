@@ -16,10 +16,17 @@ jobs:
       image: quay.io/centos/centos:stream${{ matrix.centos }}
 
     steps:
+    - name: Cache DNF packages
+      uses: actions/cache@v2
+      with:
+        path: |
+          /var/cache/dnf
+        key: ${{ matrix.centos }}
+
     - name: prepare env
       run: |
            mkdir -p ${PWD}/tmp.repos/BUILD
-           yum install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make gcc rpm-build
+           yum install -y --setopt=tsflags=nodocs --setopt=keepcache=1 autoconf automake gettext-devel git systemd make gcc rpm-build
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -43,7 +50,7 @@ jobs:
           mv ./*tar.gz exported-artifacts/
     - name: test install
       run: |
-          yum --downloadonly install -y exported-artifacts/safelease*x86_64.rpm
+          yum --downloadonly --setopt=keepcache=1 install -y exported-artifacts/safelease*x86_64.rpm
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
