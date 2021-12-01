@@ -16,6 +16,15 @@ jobs:
       image: quay.io/centos/centos:stream${{ matrix.centos }}
 
     steps:
+    - name: Install Git
+      run: |
+           mkdir -p ${PWD}/tmp.repos/BUILD
+           yum install -y --setopt=tsflags=nodocs --setopt=keepcache=1 git
+
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
     - name: Cache DNF packages
       uses: actions/cache@v2
       with:
@@ -23,13 +32,9 @@ jobs:
           /var/cache/dnf
         key: ${{ matrix.centos }}
 
-    - name: prepare env
+    - name: Install dependencies
       run: |
-           mkdir -p ${PWD}/tmp.repos/BUILD
-           yum install -y --setopt=tsflags=nodocs --setopt=keepcache=1 autoconf automake gettext-devel git systemd make gcc rpm-build
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+           yum install -y --setopt=tsflags=nodocs --setopt=keepcache=1 autoconf automake gettext-devel systemd make gcc rpm-build
 
     - name: autoreconf
       run: autoreconf -ivf
