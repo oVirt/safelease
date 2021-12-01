@@ -1,0 +1,58 @@
+name: Check patch
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        centos: [8, 9]
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream${{ matrix.centos }}
+
+    steps:
+    - name: Cache DNF packages
+      uses: actions/cache@v2
+      with:
+        path: |
+          /var/cache/dnf
+        key: ${{ matrix.centos }}
+
+    - name: prepare env
+      run: |
+           mkdir -p ${PWD}/tmp.repos/BUILD
+           yum install -y --setopt=tsflags=nodocs --setopt=keepcache=1 autoconf automake gettext-devel git systemd make gcc rpm-build
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: autoreconf
+      run: autoreconf -ivf
+
+    - name: configure
+      run: ./configure
+
+    - name: run distcheck
+      run: make -j distcheck
+
+    - name: Build RPM
+      run: rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" -ta safelease*.tar.gz
+
+    - name: Collect artifacts
+      run: |
+          mkdir -p exported-artifacts
+          find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
+          mv ./*tar.gz exported-artifacts/
+    - name: test install
+      run: |
+          yum --downloadonly --setopt=keepcache=1 install -y exported-artifacts/safelease*x86_64.rpm
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifacts
+        path: exported-artifacts/
