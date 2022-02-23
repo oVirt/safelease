@@ -1,3 +1,4 @@
+---
 name: Check patch
 
 on:
@@ -8,25 +9,32 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        centos: [8, 9]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: centos-stream-8
+            shortcut: cs8
+            container-name: el8stream
+          - name: centos-stream-9
+            shortcut: cs9
+            container-name: el9stream
+
+    name: ${{ matrix.name }}
+
+    env:
+      ARTIFACTS_DIR: exported-artifacts
+
     container:
-      image: quay.io/centos/centos:stream${{ matrix.centos }}
+      image: quay.io/ovirt/buildcontainer:${{ matrix.container-name }}
 
     steps:
-    - name: Cache DNF packages
-      uses: actions/cache@v2
-      with:
-        path: |
-          /var/cache/dnf
-        key: ${{ matrix.centos }}
-
     - name: prepare env
       run: |
            mkdir -p ${PWD}/tmp.repos/BUILD
-           yum install -y --setopt=tsflags=nodocs --setopt=keepcache=1 autoconf automake gettext-devel git systemd make gcc rpm-build
+           dnf install -y --setopt=tsflags=nodocs --setopt=keepcache=1 autoconf automake gettext-devel git systemd make gcc rpm-build
+
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -48,11 +56,12 @@ jobs:
           mkdir -p exported-artifacts
           find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
           mv ./*tar.gz exported-artifacts/
+
     - name: test install
       run: |
-          yum --downloadonly --setopt=keepcache=1 install -y exported-artifacts/safelease*x86_64.rpm
+          dnf --downloadonly --setopt=keepcache=1 install -y exported-artifacts/safelease*x86_64.rpm
+
     - name: Upload artifacts
-      uses: actions/upload-artifact@v2
+      uses: ovirt/upload-rpms-action@v2
       with:
-        name: artifacts
-        path: exported-artifacts/
+        directory: ${{ env.ARTIFACTS_DIR}}
