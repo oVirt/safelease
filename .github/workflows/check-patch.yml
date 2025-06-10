@@ -14,12 +14,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: centos-stream-8
-            shortcut: cs8
-            container-name: el8stream
           - name: centos-stream-9
             shortcut: cs9
             container-name: el9stream
+          - name: centos-stream-10
+            shortcut: cs10
+            container-name: el10stream
 
     name: ${{ matrix.name }}
 
@@ -35,7 +35,7 @@ jobs:
            mkdir -p ${PWD}/tmp.repos/BUILD
            dnf install -y --setopt=tsflags=nodocs --setopt=keepcache=1 autoconf automake gettext-devel git systemd make gcc rpm-build
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
@@ -62,6 +62,6 @@ jobs:
           dnf --downloadonly --setopt=keepcache=1 install -y exported-artifacts/safelease*x86_64.rpm
 
     - name: Upload artifacts
-      uses: ovirt/upload-rpms-action@v2
+      uses: ovirt/upload-rpms-action@main
       with:
         directory: ${{ env.ARTIFACTS_DIR}}
