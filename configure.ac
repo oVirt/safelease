@@ -20,7 +20,14 @@
 
 AC_PREREQ([2.69])
 AC_INIT([safelease], [1.0.1], [devel@ovirt.org])
-AM_INIT_AUTOMAKE([1.13 foreign -Wall -Werror])
+AM_INIT_AUTOMAKE([1.13 foreign -Wall -Werror -Wno-portability])
+
+AC_ARG_VAR([PACKAGE_RPM_RELEASE],
+    [RPM release field (default: 0.master for development, release number for release builds)])
+AS_IF([test -z "$PACKAGE_RPM_RELEASE"],
+    [PACKAGE_RPM_RELEASE="0.master"])
+AC_SUBST([PACKAGE_RPM_RELEASE])
+
 AC_PROG_CC
 AC_CONFIG_SRCDIR([src/safelease.c])
 AC_CONFIG_HEADERS([config.h])
@@ -34,6 +41,6 @@ AC_CHECK_FUNCS([alarm gettimeofday memset strerror strrchr strtoul strtoull])
 
 AC_SUBST([safeleaselibexecdir], ['${libexecdir}/safelease'])
 
-AC_CONFIG_FILES([Makefile src/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile safelease.spec])
 AC_OUTPUT
 
