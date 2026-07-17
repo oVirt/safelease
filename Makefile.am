@@ -20,12 +20,19 @@
 
 SUBDIRS = src
 
+TMPREPOS = tmp.repos
+RPMBUILD_ARGS := --define="_topdir `pwd`/$(TMPREPOS)"
+RPMBUILD_ARGS += $(if $(RELEASE_SUFFIX),--define="release_suffix $(RELEASE_SUFFIX)")
+
 .PHONY: srpm rpm
 
 srpm: dist
-	rpmbuild -ts $(DIST_ARCHIVES)
+	rm -rf "$(TMPREPOS)"
+	mkdir -vp $(TMPREPOS)/{SPECS,RPMS,SRPMS,SOURCES}
+	rpmbuild $(RPMBUILD_ARGS) -ts $(DIST_ARCHIVES)
 
-rpm: dist
-	rpmbuild -ta $(DIST_ARCHIVES)
+rpm: srpm
+	rpmbuild $(RPMBUILD_ARGS) --rebuild "$(TMPREPOS)"/SRPMS/*.src.rpm
+	cp $(distdir).tar.gz $(TMPREPOS)/SOURCES/
 
 EXTRA_DIST = safelease.spec autogen.sh README.md

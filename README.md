@@ -1,7 +1,5 @@
 # Safe Lease
 
-[![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/)
-
 Welcome to the Safe Lease source repository. This repository is hosted on [GitHub:ovirt-safelease](https://github.com/oVirt/safelease).
 
 Safelease is a legacy cluster lock utility used by [VDSM](https://github.com/oVirt/vdsm).

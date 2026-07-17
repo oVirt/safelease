@@ -9,13 +9,16 @@ config.h.in~
 config.log
 config.status
 configure
+configure~
 depcomp
 install-sh
 missing
-safelease-1.0.tar.gz
+safelease-*.tar.gz
+safelease.spec
 src/.deps/
 src/Makefile
 src/Makefile.in
 src/safelease
 src/safelease.o
 stamp-h1
+tmp.repos/
